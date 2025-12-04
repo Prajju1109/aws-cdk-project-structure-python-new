@@ -33,7 +33,7 @@ class API(Construct):
     ):
         super().__init__(scope, id_)
 
-        self.lambda_function = lambda_python_alpha.PythonFunction(
+        self.lambda_function = lambda_.Function(
             self,
             "LambdaFunction",
             runtime=lambda_.Runtime.PYTHON_3_11,
