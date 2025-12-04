@@ -40,7 +40,7 @@ Backend(
 Toolchain(
     app,
     constants.APP_NAME + "Toolchain",
-    env=cdk.Environment(account="111111111111", region="eu-west-1"),
+    env=cdk.Environment(account="488884465322", region="us-east-1"),
 )
 
 app.synth()
