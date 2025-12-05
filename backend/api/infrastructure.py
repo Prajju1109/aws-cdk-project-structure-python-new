@@ -34,16 +34,18 @@ class API(Construct):
         super().__init__(scope, id_)
 
         self.lambda_function = lambda_.Function(
-            self,
-            "LambdaFunction",
-            runtime=lambda_.Runtime.PYTHON_3_11,
-            environment={"DYNAMODB_TABLE_NAME": dynamodb_table_name},
-            reserved_concurrent_executions=lambda_reserved_concurrency,
-            entry=str(pathlib.Path(__file__).parent.joinpath("runtime").resolve()),
-            index="lambda_function.py",
-            handler="lambda_function.handler",
-        )
-
+    self,
+    "LambdaFunction",
+    runtime=lambda_.Runtime.PYTHON_3_10,
+    handler="lambda_function.handler",
+    code=lambda_.Code.from_asset(
+        str(pathlib.Path(__file__).parent.joinpath("runtime").resolve())
+    ),
+    environment={
+        "DYNAMODB_TABLE_NAME": dynamodb_table_name,
+    },
+    reserved_concurrent_executions=lambda_reserved_concurrency,
+)
         api_gateway_http_lambda_integration = (
             apigatewayv2_integrations_alpha.HttpLambdaIntegration(
                 "APIGatewayHTTPLambdaIntegration", handler=self.lambda_function
