@@ -41,7 +41,7 @@ class API(Construct):
             reserved_concurrent_executions=lambda_reserved_concurrency,
             entry=str(pathlib.Path(__file__).parent.joinpath("runtime").resolve()),
             index="lambda_function.py",
-            handler="lambda_handler",
+            handler="lambda_function.handler",
         )
 
         api_gateway_http_lambda_integration = (
